@@ -406,26 +406,58 @@
         return;
       }
 
-      // Demonstration only: there is no server, so we simulate a short "sending" delay
+      const endpoint = form.dataset.formEndpoint?.trim();
+      if (!endpoint) {
+        submit.disabled = true;
+        submit.textContent = 'Sending...';
+        showStatus('info', 'Checking your details...');
+
+        setTimeout(() => {
+          const firstName = $('#name').value.trim().split(/\s+/)[0];
+          form.reset();
+          fields.forEach((field) => {
+            field.setAttribute('aria-invalid', 'false');
+            delete field.dataset.touched;
+          });
+          $$('.field-error', form).forEach((box) => { box.textContent = ''; });
+          delete message.dataset.autofilled;
+          counter.textContent = `0 / ${message.maxLength}`;
+
+          submit.disabled = false;
+          submit.textContent = 'Send message';
+          showStatus('success', `Thank you, ${firstName}. Your details passed validation. This is a demonstration form, so nothing was sent.`);
+        }, 900);
+        return;
+      }
+
       submit.disabled = true;
       submit.textContent = 'Sending...';
-      showStatus('info', 'Checking your details...');
+      showStatus('info', 'Sending your project details...');
 
-      setTimeout(() => {
-        const firstName = $('#name').value.trim().split(/\s+/)[0];
-        form.reset();
-        fields.forEach((field) => {
-          field.setAttribute('aria-invalid', 'false');
-          delete field.dataset.touched;
+      const payload = Object.fromEntries(new FormData(form).entries());
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error(`Submission failed with HTTP ${response.status}`);
+          return response;
+        })
+        .then(() => {
+          form.reset();
+          fields.forEach((field) => field.setAttribute('aria-invalid', 'false'));
+          $$('.field-error', form).forEach((box) => { box.textContent = ''; });
+          counter.textContent = `0 / ${message.maxLength}`;
+          showStatus('success', 'Thank you. Your project details were submitted.');
+        })
+        .catch(() => {
+          showStatus('error', 'We could not submit your details. Please try again or contact hello@nurutech.ac.ke.');
+        })
+        .finally(() => {
+          submit.disabled = false;
+          submit.textContent = 'Send message';
         });
-        $$('.field-error', form).forEach((box) => { box.textContent = ''; });
-        delete message.dataset.autofilled;
-        counter.textContent = `0 / ${message.maxLength}`;
-
-        submit.disabled = false;
-        submit.textContent = 'Send message';
-        showStatus('success', `Thank you, ${firstName}. Your details passed validation. This is a demonstration form, so nothing was sent.`);
-      }, 900);
     });
   }
 
