@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuru Tech | Web and software development in Kenya</title>
+  <meta name="description" content="Nuru Tech designs and builds websites, web applications and databases for businesses, clinics, schools and community groups in Kenya.">
+  <meta name="theme-color" content="#0A1128">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: if these fail to load, the fallback stacks in style.css take over -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Marks the page as "JavaScript available" so reveal animations only run when the script can finish them -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- Icon sprite: every icon on the page is defined once here and reused with <use href="#id"> -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"/><path d="m14 7 3 3"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.2-1.5 2-4 2h-2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5v14l12-7L7 5Z"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Nuru Tech, back to the top of the home page">
+        <img src="assets/icons/logo.svg" alt="" width="36" height="36">
+        <span class="brand-name">Nuru Tech</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <svg class="icon icon-open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+        <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#i-close"/></svg>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn--accent btn--sm" href="#contact">Get a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Websites and software that help your business grow</h1>
+          <p class="hero-lead">Nuru Tech designs and builds websites, web applications and databases for businesses, clinics, schools and community groups across Kenya. You get a clear fixed-price quote, mobile-friendly work and support after launch.</p>
+          <div class="hero-actions">
+            <a class="btn btn--accent" href="#services">Explore Services</a>
+            <a class="btn btn--outline-light" href="#contact">Get a Quote</a>
+          </div>
+          <ul class="hero-proof">
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Fixed-price quotes</li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Built mobile-first</li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Support after launch</li>
+          </ul>
+        </div>
+
+        <!-- Decorative product preview, built only with HTML and CSS (hidden from screen readers) -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-bar"><span></span><span></span><span></span><em>app.nurutech.example</em></div>
+            <div class="mock-body">
+              <div class="mock-side"><i></i><i></i><i></i><i></i></div>
+              <div class="mock-main">
+                <div class="mock-stats">
+                  <div class="mock-stat"><b>128</b><small>Orders today</small></div>
+                  <div class="mock-stat"><b>214k</b><small>Revenue, KES</small></div>
+                  <div class="mock-stat"><b>12</b><small>New clients</small></div>
+                </div>
+                <div class="mock-chart">
+                  <i style="--h:42%"></i><i style="--h:58%"></i><i style="--h:50%"></i><i style="--h:74%"></i>
+                  <i style="--h:66%"></i><i style="--h:88%"></i><i style="--h:100%"></i>
+                </div>
+              </div>
+            </div>
+            <div class="mock-toast">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>
+              <span><strong>Payment received</strong><small>KES 4,500 from a customer</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="about-title">A small team that treats your business like its own</h2>
+          <p>Nuru Tech is a software studio that builds the digital tools Kenyan organisations use every day: websites that win customers, web applications that save staff time and databases that keep records accurate. One team takes your project from the first sketch to launch day and beyond.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-cards">
+            <article class="info-card reveal">
+              <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-target"/></svg>
+              <h3>Our mission</h3>
+              <p>Make reliable, well-designed software affordable for small and growing organisations.</p>
+            </article>
+            <article class="info-card reveal">
+              <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>
+              <h3>Our vision</h3>
+              <p>A Kenya where every business and community group runs on tools that were built for them.</p>
+            </article>
+          </div>
+
+          <div class="values reveal">
+            <h3>What we stand for</h3>
+            <ul class="values-list">
+              <li><strong>Clear communication.</strong> Plain language, regular updates and no surprises on scope or cost.</li>
+              <li><strong>Careful craft.</strong> Clean, tested code that the next developer can understand.</li>
+              <li><strong>Accessible by default.</strong> Sites that work on small phones, slow connections and assistive technology.</li>
+              <li><strong>Honest pricing.</strong> Fixed quotes in Kenyan shillings, agreed before work starts.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sample statistics for the demonstration; numbers count up when scrolled into view -->
+        <dl class="stats reveal">
+          <div class="stat"><dt>Projects completed</dt><dd><span data-count="150" data-suffix="+">150+</span></dd></div>
+          <div class="stat"><dt>Happy clients</dt><dd><span data-count="80" data-suffix="+">80+</span></dd></div>
+          <div class="stat"><dt>Years of experience</dt><dd><span data-count="8">8</span></dd></div>
+          <div class="stat"><dt>Hours to first reply</dt><dd><span data-count="24">24</span></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="section section--mist" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="services-title">What we build and maintain</h2>
+          <p>Six services that cover a project from design to long-term support. Pick one, or combine several in a single quote.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="service-card reveal">
+            <span class="icon-tile"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg></span>
+            <h3>Website Development</h3>
+            <p>Fast, mobile-friendly websites that present your business clearly and bring in enquiries.</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Works on every screen size</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Search-friendly structure</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Easy to update yourself</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Website Development" data-message="I'd like a quote for a new website.">Request this service</a>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="icon-tile"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg></span>
+            <h3>Web Application Development</h3>
+            <p>Custom web apps for bookings, orders, records and reporting, built around how your team works.</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Secure accounts and user roles</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Dashboards and reports</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Payment and API integrations</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Web Application Development" data-message="I'd like a quote for a custom web application.">Request this service</a>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="icon-tile"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-pen"/></svg></span>
+            <h3>UI/UX Design</h3>
+            <p>Interfaces people understand at first glance, tested with the people who will use them.</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Wireframes and clickable prototypes</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Accessible colour and type</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>A design system for consistency</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="UI/UX Design" data-message="I'd like help designing the interface for my product.">Request this service</a>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="icon-tile"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-database"/></svg></span>
+            <h3>Database Design and Management</h3>
+            <p>Well-structured databases that keep your records accurate, quick to search and safe.</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Clear data models</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Backups and recovery plans</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Move from spreadsheets to a database</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Database Design and Management" data-message="I'd like to organise my records in a proper database.">Request this service</a>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="icon-tile"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-wrench"/></svg></span>
+            <h3>Website Maintenance</h3>
+            <p>Regular updates, security patches and content changes so your site stays healthy.</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Monthly updates and backups</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Uptime monitoring</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Content changes in 2 working days</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Website Maintenance" data-message="I'd like a maintenance plan for my website.">Request this service</a>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="icon-tile"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-headset"/></svg></span>
+            <h3>Technical Support</h3>
+            <p>Friendly help when something breaks, or when your team needs training on a new tool.</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Email and phone support</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Staff training sessions</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Fast response to urgent issues</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Technical Support" data-message="I need technical support for my system.">Request this service</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section id="pricing" class="section" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="pricing-title">Simple packages in Kenyan shillings</h2>
+          <p>Every package has a fixed price agreed before work begins. Not sure which one fits? Choose the closest and we will adjust the quote with you.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card reveal">
+            <h3>Basic Package</h3>
+            <p class="price-desc">A clean, fast website for a small business, shop or personal brand.</p>
+            <p class="price"><span class="price-currency">KES</span><span class="price-amount">35,000</span></p>
+            <p class="price-note">One-time project fee</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Up to 5 pages</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Mobile-friendly design</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Contact form with validation</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Basic search engine setup</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>1 month of free support</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Website Development" data-message="I'm interested in the Basic Package (KES 35,000).">Choose Basic</a>
+          </article>
+
+          <article class="price-card price-card--featured reveal">
+            <span class="price-badge">Most popular</span>
+            <h3>Professional Package</h3>
+            <p class="price-desc">For growing businesses that need more than a brochure site.</p>
+            <p class="price"><span class="price-currency">KES</span><span class="price-amount">95,000</span></p>
+            <p class="price-note">One-time project fee</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Up to 12 pages</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Custom UI design</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Admin area to manage content</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Database integration</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Mobile money payment integration</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Analytics dashboard</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>3 months of free support</li>
+            </ul>
+            <a class="btn btn--accent" href="#contact" data-service="Web Application Development" data-message="I'm interested in the Professional Package (KES 95,000).">Choose Professional</a>
+          </article>
+
+          <article class="price-card reveal">
+            <h3>Enterprise Package</h3>
+            <p class="price-desc">Custom software for organisations with complex needs.</p>
+            <p class="price"><span class="price-currency">From KES</span><span class="price-amount">250,000</span></p>
+            <p class="price-note">Final price set after a scoping call</p>
+            <ul class="check-list">
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Custom web application</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Multi-user roles and permissions</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>API and system integrations</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Security review and testing</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Staff training and documentation</li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>12 months of maintenance and priority support</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact" data-service="Web Application Development" data-message="I'm interested in the Enterprise Package (from KES 250,000).">Choose Enterprise</a>
+          </article>
+        </div>
+        <p class="fine-print">Prices are sample figures for this demonstration. A real quote depends on project scope.</p>
+      </div>
+    </section>
+
+    <!-- ===================== PORTFOLIO ===================== -->
+    <section id="portfolio" class="section section--dark" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="portfolio-title">Recent projects</h2>
+          <p>A selection of sample projects across websites, web apps, design and data. Use the filters to browse by type, then open a project for details.</p>
+        </div>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects by category">
+          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="websites" aria-pressed="false">Websites</button>
+          <button class="filter-btn" type="button" data-filter="web-apps" aria-pressed="false">Web Apps</button>
+          <button class="filter-btn" type="button" data-filter="ui-ux" aria-pressed="false">UI/UX</button>
+          <button class="filter-btn" type="button" data-filter="databases" aria-pressed="false">Databases</button>
+        </div>
+        <p class="filter-status" id="filter-status" role="status" aria-live="polite">Showing 6 of 6 projects</p>
+
+        <div class="project-grid">
+          <article class="project-card" data-category="websites" data-service="Website Development">
+            <div class="project-media"><img src="assets/images/project-maji-safi.svg" alt="Maji Safi Foundation website with a clean water headline, a donate button and three impact figures" width="800" height="500" loading="lazy"></div>
+            <div class="project-body">
+              <span class="project-tag">Websites</span>
+              <h3>Maji Safi Foundation</h3>
+              <p>Donation-focused website for a community water charity.</p>
+              <button class="btn btn--outline-light btn--sm js-project-open" type="button">View details</button>
+              <div class="project-details" hidden>
+                <p>A fast, accessible site that explains the charity's work and makes giving simple on a phone, even on slow mobile data.</p>
+                <dl>
+                  <dt>Client</dt><dd>Maji Safi Foundation (sample client)</dd>
+                  <dt>Services</dt><dd>Website development, UI design</dd>
+                  <dt>Built with</dt><dd>HTML, CSS, JavaScript</dd>
+                  <dt>Result</dt><dd>Donation page loads in under two seconds on mobile data.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="web-apps" data-service="Web Application Development">
+            <div class="project-media"><img src="assets/images/project-afyatrack.svg" alt="AfyaTrack clinic portal dashboard with appointment totals, a weekly visits chart and a patient queue" width="800" height="500" loading="lazy"></div>
+            <div class="project-body">
+              <span class="project-tag">Web Apps</span>
+              <h3>AfyaTrack Clinics</h3>
+              <p>Appointment and patient queue portal for a group of clinics.</p>
+              <button class="btn btn--outline-light btn--sm js-project-open" type="button">View details</button>
+              <div class="project-details" hidden>
+                <p>Reception staff book, move and confirm appointments in one place, and nurses see who is waiting right now.</p>
+                <dl>
+                  <dt>Client</dt><dd>AfyaTrack Clinics (sample client)</dd>
+                  <dt>Services</dt><dd>Web application, database design</dd>
+                  <dt>Built with</dt><dd>Python, PostgreSQL, JavaScript</dd>
+                  <dt>Result</dt><dd>Paper booking books retired within the first month.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ui-ux" data-service="UI/UX Design">
+            <div class="project-media"><img src="assets/images/project-pesa-wallet.svg" alt="Three phone screens of a wallet app: a balance screen, a spending chart and a wireframe sketch" width="800" height="500" loading="lazy"></div>
+            <div class="project-body">
+              <span class="project-tag">UI/UX</span>
+              <h3>Pesa Wallet</h3>
+              <p>Mobile wallet redesign, from wireframes to a tested prototype.</p>
+              <button class="btn btn--outline-light btn--sm js-project-open" type="button">View details</button>
+              <div class="project-details" hidden>
+                <p>We simplified a crowded app into three core screens and tested the prototype with everyday users before any code was written.</p>
+                <dl>
+                  <dt>Client</dt><dd>Pesa Wallet (sample client)</dd>
+                  <dt>Services</dt><dd>UX research, wireframes, UI design</dd>
+                  <dt>Built with</dt><dd>Figma, usability testing</dd>
+                  <dt>Result</dt><dd>Testers finished a money transfer in half the previous time.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="websites" data-service="Website Development">
+            <div class="project-media"><img src="assets/images/project-duka-fresh.svg" alt="Duka Fresh online grocery storefront showing four product cards with prices and add to cart buttons" width="800" height="500" loading="lazy"></div>
+            <div class="project-body">
+              <span class="project-tag">Websites</span>
+              <h3>Duka Fresh</h3>
+              <p>Online grocery storefront with a product catalogue and cart.</p>
+              <button class="btn btn--outline-light btn--sm js-project-open" type="button">View details</button>
+              <div class="project-details" hidden>
+                <p>A simple storefront where customers browse fresh produce by category, fill a cart and pay with mobile money.</p>
+                <dl>
+                  <dt>Client</dt><dd>Duka Fresh (sample client)</dd>
+                  <dt>Services</dt><dd>Website development, payment integration</dd>
+                  <dt>Built with</dt><dd>HTML, CSS, JavaScript</dd>
+                  <dt>Result</dt><dd>Customers can complete an order from a phone in under a minute.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="web-apps" data-service="Web Application Development">
+            <div class="project-media"><img src="assets/images/project-shamba-market.svg" alt="Shamba Market produce marketplace listing maize, kale and passion fruit with prices and a contact farmer button" width="800" height="500" loading="lazy"></div>
+            <div class="project-body">
+              <span class="project-tag">Web Apps</span>
+              <h3>Shamba Market</h3>
+              <p>Marketplace that connects small farmers with local buyers.</p>
+              <button class="btn btn--outline-light btn--sm js-project-open" type="button">View details</button>
+              <div class="project-details" hidden>
+                <p>Farmers list produce from a basic smartphone and buyers search by crop and location. The pages stay light so they load on weak connections.</p>
+                <dl>
+                  <dt>Client</dt><dd>Shamba Market (sample client)</dd>
+                  <dt>Services</dt><dd>Web application, database design</dd>
+                  <dt>Built with</dt><dd>Node.js, PostgreSQL, JavaScript</dd>
+                  <dt>Result</dt><dd>Hundreds of listings moved from spreadsheets into one searchable system.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="databases" data-service="Database Design and Management">
+            <div class="project-media"><img src="assets/images/project-sacco-ledger.svg" alt="Entity relationship diagram linking members, loans, contributions and repayments tables" width="800" height="500" loading="lazy"></div>
+            <div class="project-body">
+              <span class="project-tag">Databases</span>
+              <h3>SACCO Ledger</h3>
+              <p>Member, loan and contribution database for a savings group.</p>
+              <button class="btn btn--outline-light btn--sm js-project-open" type="button">View details</button>
+              <div class="project-details" hidden>
+                <p>We replaced several spreadsheets with one structured database, so balances, loans and repayments always agree.</p>
+                <dl>
+                  <dt>Client</dt><dd>SACCO Ledger (sample client)</dd>
+                  <dt>Services</dt><dd>Database design, migration, backups</dd>
+                  <dt>Built with</dt><dd>PostgreSQL, SQL</dd>
+                  <dt>Result</dt><dd>Month-end reports that took days now run in minutes.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section id="testimonials" class="section section--mist" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="testimonials-title">What clients say</h2>
+          <p>Sample testimonials written for this demonstration.</p>
+        </div>
+
+        <div class="slider reveal" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
+          <div class="slider-viewport">
+            <div class="slider-track" id="testimonial-track">
+              <div class="slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                <figure>
+                  <p class="stars" aria-hidden="true"><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg></p>
+                  <blockquote><p>Online donations tripled in the first quarter after launch. The team explained every step in plain language, and the site still loads quickly on our supporters' phones.</p></blockquote>
+                  <figcaption>
+                    <img src="assets/images/avatar-achieng.svg" alt="" width="56" height="56" loading="lazy">
+                    <span><strong>Achieng' Otieno</strong><small>Director, Maji Safi Foundation. Rated 5 out of 5.</small></span>
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                <figure>
+                  <p class="stars" aria-hidden="true"><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg></p>
+                  <blockquote><p>Our reception staff stopped juggling paper bookings. The appointment system was easy to learn, and support answered every question within the hour.</p></blockquote>
+                  <figcaption>
+                    <img src="assets/images/avatar-faith.svg" alt="" width="56" height="56" loading="lazy">
+                    <span><strong>Dr. Faith Njeri</strong><small>Clinic administrator, AfyaTrack Clinics. Rated 5 out of 5.</small></span>
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                <figure>
+                  <p class="stars" aria-hidden="true"><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg><svg class="icon icon--fill"><use href="#i-star"/></svg></p>
+                  <blockquote><p>They turned a messy spreadsheet into a proper database and a marketplace our farmers can use from basic smartphones. We now spend our time selling, not fixing data.</p></blockquote>
+                  <figcaption>
+                    <img src="assets/images/avatar-brian.svg" alt="" width="56" height="56" loading="lazy">
+                    <span><strong>Brian Mwangi</strong><small>Founder, Shamba Market. Rated 5 out of 5.</small></span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-controls">
+            <button class="icon-btn slider-prev" type="button" aria-label="Previous testimonial"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-prev"/></svg></button>
+            <div class="slider-dots" role="group" aria-label="Choose a testimonial"></div>
+            <button class="icon-btn slider-next" type="button" aria-label="Next testimonial"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-next"/></svg></button>
+            <button class="icon-btn slider-toggle" type="button" aria-label="Pause automatic slideshow">
+              <svg class="icon icon-pause" aria-hidden="true" focusable="false"><use href="#i-pause"/></svg>
+              <svg class="icon icon-play" aria-hidden="true" focusable="false"><use href="#i-play"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="contact-title">Tell us about your project</h2>
+          <p>Share a few details and choose a service. We reply with questions or a quote, usually within one working day.</p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-info reveal" aria-label="Business contact details">
+            <h3>Contact details</h3>
+            <p class="contact-note">These details are placeholders. Replace them with the real business information before publishing.</p>
+            <ul class="contact-list">
+              <li>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg>
+                <span><small>Email</small>hello@your-business.example <em class="tag-placeholder">Placeholder</em></span>
+              </li>
+              <li>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
+                <span><small>Phone</small>+254 700 000 000 <em class="tag-placeholder">Placeholder</em></span>
+              </li>
+              <li>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+                <span><small>Location</small>Your Street, Your Town, Kenya <em class="tag-placeholder">Placeholder</em></span>
+              </li>
+            </ul>
+            <h3>Follow us</h3>
+            <ul class="social-list">
+              <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+              <li><a href="https://x.com" target="_blank" rel="noopener noreferrer">X<span class="sr-only"> (opens in a new tab)</span></a></li>
+              <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram<span class="sr-only"> (opens in a new tab)</span></a></li>
+            </ul>
+          </aside>
+
+          <form id="contact-form" class="contact-form reveal" novalidate aria-describedby="demo-note">
+            <p class="demo-note" id="demo-note"><strong>Demonstration form.</strong> This form checks your input in the browser only. No backend is connected, so nothing is sent or stored.</p>
+            <p class="required-note">Fields marked with * are required.</p>
+
+            <div class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></div>
+
+            <div class="field">
+              <label for="name">Full name <span aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
+              <p class="field-error" id="name-error"></p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="email">Email address <span aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-error">
+                <p class="field-error" id="email-error"></p>
+              </div>
+              <div class="field">
+                <label for="phone">Phone number <span aria-hidden="true">*</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="0712 345 678" required aria-describedby="phone-error">
+                <p class="field-error" id="phone-error"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="service">Service needed <span aria-hidden="true">*</span></label>
+              <select id="service" name="service" required aria-describedby="service-error">
+                <option value="">Choose a service</option>
+                <option>Website Development</option>
+                <option>Web Application Development</option>
+                <option>UI/UX Design</option>
+                <option>Database Design and Management</option>
+                <option>Website Maintenance</option>
+                <option>Technical Support</option>
+                <option>Not sure yet</option>
+              </select>
+              <p class="field-error" id="service-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="message">Project details <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" rows="5" maxlength="1000" required aria-describedby="message-error message-count"></textarea>
+              <div class="field-meta">
+                <p class="field-error" id="message-error"></p>
+                <p class="char-count" id="message-count">0 / 1000</p>
+              </div>
+            </div>
+
+            <button class="btn btn--primary btn--block" type="submit" id="submit-btn">Send message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home" aria-label="Nuru Tech, back to the top of the home page">
+          <img src="assets/icons/logo.svg" alt="" width="36" height="36">
+          <span class="brand-name">Nuru Tech</span>
+        </a>
+        <p>Websites, web applications and databases for Kenyan businesses, clinics, schools and community groups.</p>
+      </div>
+
+      <nav aria-label="Footer quick links">
+        <h2 class="footer-title">Quick links</h2>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Footer services">
+        <h2 class="footer-title">Services</h2>
+        <ul>
+          <li><a href="#contact" data-service="Website Development">Website Development</a></li>
+          <li><a href="#contact" data-service="Web Application Development">Web Applications</a></li>
+          <li><a href="#contact" data-service="UI/UX Design">UI/UX Design</a></li>
+          <li><a href="#contact" data-service="Database Design and Management">Database Design</a></li>
+          <li><a href="#contact" data-service="Website Maintenance">Website Maintenance</a></li>
+          <li><a href="#contact" data-service="Technical Support">Technical Support</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer-title">Social media</h2>
+        <ul>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener noreferrer">X<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram<span class="sr-only"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year">2026</span> Nuru Tech. A fictional agency created for a front-end web development project.</p>
+      <button class="btn btn--outline-light btn--sm" type="button" data-back-to-top>Back to top</button>
+    </div>
+  </footer>
+
+  <!-- Floating back-to-top button: appears after scrolling down -->
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">
+    <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-up"/></svg>
+  </button>
+
+  <!-- Project details dialog (native <dialog> element) -->
+  <dialog class="modal" id="project-dialog" aria-labelledby="project-dialog-title">
+    <button class="modal-close" type="button" data-close-dialog aria-label="Close project details">
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg>
+    </button>
+    <img id="project-dialog-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="800" height="500">
+    <div class="modal-content">
+      <span class="project-tag project-tag--light" id="project-dialog-tag"></span>
+      <h2 id="project-dialog-title"></h2>
+      <div id="project-dialog-body"></div>
+      <a class="btn btn--primary" id="project-dialog-cta" href="#contact" data-service="">Start a similar project</a>
+    </div>
+  </dialog>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
